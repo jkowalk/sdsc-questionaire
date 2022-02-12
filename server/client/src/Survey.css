@@ -1,0 +1,125 @@
+:root {
+    /* Farbwerte (neu) */
+    --lilac: rgb(188, 181, 249);
+    --light_green: rgb(121, 218, 205);
+    --light_blue: rgb(130, 219, 255);
+    --light_gray: rgb(139, 155, 160);
+
+    /* Corporate Colors (s. Logo SDSC-BW) */
+    --corp_blue: rgb(0, 126, 169);
+    --corp_green: rgb(0, 152, 129);
+    --corp_yellow: rgb(255, 212, 0);
+    --corp_anthracite: rgb(74, 74, 74);
+
+    /* Varianten */
+    --light_green_transparent: rgba(121, 218, 205, 0.35);
+    --corp_anthracite_transparent: rgba(74, 74, 74, 0.75);
+}
+
+/* SDSC-BW Logo */
+.sdsc-logo {
+    width: 20rem;
+    margin: 3rem 0 0 5%;
+}
+
+/* Survey title */
+.custom-survey-title {
+    font-weight: 700;
+    font-size: 40px !important;
+    line-height: 1.1em;
+}
+
+/* Page title */
+.sv-title.sv-page__title {
+    color: var(--corp_blue);
+}
+
+/* Question title */
+.sv-question__header.sv-question__header--location--top {
+    color: var(--corp_blue);
+}
+
+/* Survey Description */
+.custom-description {
+    font-weight: 700;
+    font-size: 22px !important;
+    line-height: 1.3em;
+}
+
+/* Background image */
+body {
+    background-image: url("./images/bg-body.png");
+    background-position: left top;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    margin: 10px
+}
+
+.sv-root-modern {
+    max-width: 70rem;
+    margin: auto;
+}
+
+/* Question box */
+.sv-question {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px gray;
+    padding: 15px;
+    margin: 1rem;
+}
+
+/* Padding between questions */
+.sv-row.sv-clearfix:not(:last-child) {
+    padding-bottom: 1.5rem;
+}
+
+/* Padding footer */
+.sv-footer {
+    padding-bottom: 6rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+/* Custom Rating Question */
+.sv-root-modern .sv-rating__item--selected .sv-rating__item-text.rating-no-answer {
+    background-color: blue !important;
+    color: white !important;
+    border-color: blue !important;
+}
+.sv-root-modern .sv-rating__item-text.no-answer {
+    color: black;
+    border-color: white;
+    float: right;
+}
+.sv-root-modern .sv-rating__item-text.no-answer:hover {
+    background-color: white;
+    border-color: black;
+}
+.sv-root-modern .sv-rating__item--selected .sv-rating__item-text.no-answer {
+    color: white;
+}
+.sv-root-modern .sv-rating__item--selected .sv-rating__item-text.no-answer:hover {
+    color: black;
+}
+.sv-root-modern .sv-rating__item--selected .sv-rating__item-text.no-answer {
+    border-color: blue;
+}
+
+/* Navigation Buttons */
+.sv-footer.sv-body__footer.sv-clearfix {
+    margin-top: 0;
+}
+
+.sv-container-modern {
+    font-family: 'Roboto', Helvetica, Arial, Lucida, sans-serif !important;
+}
+
+.sv-title {
+    font-family: 'Roboto', Helvetica, Arial, Lucida, sans-serif !important;
+}
+
+.sv-body {
+    font-family: 'Roboto', Helvetica, Arial, Lucida, sans-serif !important;
+}
