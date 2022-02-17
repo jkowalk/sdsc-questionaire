@@ -1,6 +1,18 @@
 "use strict";
 const nodemailer = require("nodemailer");
 
+// create reusable transporter object using the default SMTP transport
+const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST || "",
+    port: process.env.EMAIL_PORT || 587, //587
+    secure: process.env.EMAIL_SECURE || false,
+    debug: true,
+    auth: {
+        user: process.env.EMAIL_USERNAME || "",
+        pass: process.env.EMAIL_PASSWORD || "",
+    }
+});
+
 /*
 attachments in form [{filename: attachment_send_name, path: attachment_path}]
  */
@@ -9,22 +21,9 @@ async function sendEmail(recipient, subject, content, attachments) {
     console.log("To: ", recipient, "Subject: ", subject);
     // Generate test SMTP service account from ethereal.email
     // Only needed if you don't have a real mail account for testing
-    let testAccount = await nodemailer.createTestAccount();
 
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-        host: process.env.EMAIL_HOST || "smtp.ethereal.email",
-        port: process.env.EMAIL_PORT || 587,
-        tls: {
-            ciphers: 'SSLv3',
-            rejectUnauthorized: false
-        },
-        debug: true,
-        auth: {
-            user: process.env.EMAIL_USERNAME || testAccount.user,
-            pass: process.env.EMAIL_PASSWORD || testAccount.pass,
-        }
-    });
+
+
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
@@ -33,15 +32,23 @@ async function sendEmail(recipient, subject, content, attachments) {
         subject: subject, // Subject line
         text: content, // plain text body
         //html: "<b>Hello world?</b>", // html body
-        attachments: attachments
+        //attachments: attachments
     });
 
     console.log("Message sent: %s", info.messageId);
     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+}
 
-    // Preview only available when sending through an Ethereal account
-    //console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+function verifyConnection() {
+    // verify connection configuration
+    transporter.verify(function(error, success) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Server is ready to take our messages');
+        }
+    });
 }
 
 module.exports.sendEmail = sendEmail;
+module.exports.verifyConnection = verifyConnection;

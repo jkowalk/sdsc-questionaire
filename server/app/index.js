@@ -8,6 +8,7 @@ const path = require('path');
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const {handleSubmission, handleGenericSubmission} = require("./submission_handler");
+const {verifyConnection} = require("./email");
 
 
 var app = express();
@@ -50,3 +51,6 @@ app.listen(port, function () {
     console.log("GENERIC_REPORT: " + process.env.GENERIC_REPORT);
     console.log("SEND_CLIENT_EMAIL " + process.env.SEND_CLIENT_EMAIL);
 });
+
+// Check email connection
+verifyConnection();
