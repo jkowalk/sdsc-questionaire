@@ -81,14 +81,11 @@ widgets.bootstrapslider(Survey);
 
 function onComplete(result) {
     console.log(result.data);
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({surveyResult: result.data, surveyJson: surveyJson})
-    };
-    fetch('/post', requestOptions)
-        .then(response => response.json())
-        .then(data => console.log(data));
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", `/${process.env.REACT_APP_URL || "survey"}/post`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({surveyResult: result.data, surveyJson: surveyJson}));
 }
 
 

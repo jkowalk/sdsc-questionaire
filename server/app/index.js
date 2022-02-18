@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 /**
  * Receives the Survey Result
  */
-app.post("/post", function (req, res) {
+app.post(`/${process.env.REACT_APP_URL || "survey"}/post`, function (req, res) {
     let dataJSON = req.body.surveyResult;
     let surveyJSON = req.body.surveyJson;
     if (process.env.GENERIC_REPORT) {
@@ -40,7 +40,7 @@ app.post("/post", function (req, res) {
 
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
-const app_path = "/" + (process.env.REACT_APP_URL || "test2");
+const app_path = "/" + (process.env.REACT_APP_URL || "survey");
 // All other GET requests not handled before will return our React app
 app.get(app_path, (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));

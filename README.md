@@ -42,6 +42,7 @@ For further information visit those github pages or [the official SurveyJS websi
 - `GENERIC_REPORT=1`
   - Enable if you want to use this app for a generic survey (will not include scores in the survey, just a list of all the answers)
   - You can set a html text that is displayed before the answers.
+- `EMAIL_SECURE` you can change the secure option for nodemailer (default false)
 
 ### Survey JSON
 The Survey can be changed by changing the survey file in `server/client/src/assets/survey_json.js`.

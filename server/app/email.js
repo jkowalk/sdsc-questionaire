@@ -32,7 +32,7 @@ async function sendEmail(recipient, subject, content, attachments) {
         subject: subject, // Subject line
         text: content, // plain text body
         //html: "<b>Hello world?</b>", // html body
-        //attachments: attachments
+        attachments: attachments
     });
 
     console.log("Message sent: %s", info.messageId);
@@ -40,6 +40,7 @@ async function sendEmail(recipient, subject, content, attachments) {
 }
 
 function verifyConnection() {
+    console.log("Verifying email connection...");
     // verify connection configuration
     transporter.verify(function(error, success) {
         if (error) {
