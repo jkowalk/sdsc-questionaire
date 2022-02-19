@@ -2,7 +2,7 @@
 const nodemailer = require("nodemailer");
 
 // create reusable transporter object using the default SMTP transport
-const transporter = nodemailer.createTransport({
+const transporter_auth = nodemailer.createTransport({
     host: process.env.EMAIL_HOST || "",
     port: process.env.EMAIL_PORT || 587, //587
     secure: process.env.EMAIL_SECURE || false,
@@ -12,6 +12,15 @@ const transporter = nodemailer.createTransport({
         pass: process.env.EMAIL_PASSWORD || "",
     }
 });
+
+const transporter_no_auth = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST || "",
+    port: process.env.EMAIL_PORT || 587, //587
+    secure: process.env.EMAIL_SECURE || false,
+    debug: true,
+});
+
+const transporter = process.env.NO_EMAIL_AUTH ? transporter_no_auth : transporter_auth;
 
 /*
 attachments in form [{filename: attachment_send_name, path: attachment_path}]

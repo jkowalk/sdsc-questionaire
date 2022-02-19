@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
       context: "./server"
       args:
-        - REACT_APP_URL=survey # url ending on which the survey will be served. !!! Also needs to be changed in server/app/package.json ->homepage !!!
+        - REACT_APP_URL=survey # url ending on which the survey will be served. !!! Also needs to be changed in server/client/package.json ->homepage !!!
         - REACT_APP_PAGE_TITLE=SDSC-BW Potentialanalyse
     restart: always
     environment:
@@ -18,6 +18,7 @@ services:
       - SENDER_EMAIL="SDSC-BW" <info@sdsc-bw.de> #"Fred Foo" <foo@example.de>' format for friendly name
       - SDSC_RECEIVER_EMAIL=receiver@sdsc-bw.de
       - SEND_CLIENT_EMAIL=1 #If enabled sends Email to client (dataJSON must contain kontakt_email_adresse)
+      #- NO_EMAIL_AUTH=1  #Include if no email authentication needed
       #- GENERIC_REPORT=1  #Include if you want to use this app for a generic survey (will not include scores in the survey)
     ports:
       - "80:3000"

@@ -105,6 +105,7 @@ function sendEmailToSDSC(pdf_path, dataJson) {
  */
 function handleClientError(msg, dataJson) {
     console.log("Client Error");
+    console.log(msg);
     let content = `Es gab einen Fehler bei der Generierung und Versendung des Potentialanalyse Reports, mit folgender Fehlermeldung: \n\n
             ${msg} \n\n
             Das Json mit den erhaltenen Daten ist angefügt.`;

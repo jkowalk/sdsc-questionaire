@@ -21,7 +21,7 @@ For further information visit those github pages or [the official SurveyJS websi
 ### Docker Environment Variables
 #### build
 - `REACT_APP_URL=url`
-  - !!! Also needs to be changed in `server/app/package.json` ->homepage !!!
+  - !!! Also needs to be changed in `server/client/package.json` ->homepage !!!
   - Specifies the /url on which the app is served from (static files are served from /url/static)
 - `REACT_APP_PAGE_TITLE=SDSC-BW Potentialanalyse`
   - Specifies the Page Title displayed in the browser Tab
@@ -42,6 +42,7 @@ For further information visit those github pages or [the official SurveyJS websi
 - `GENERIC_REPORT=1`
   - Enable if you want to use this app for a generic survey (will not include scores in the survey, just a list of all the answers)
   - You can set a html text that is displayed before the answers.
+- `NO_EMAIL_AUTH=1`  #Include if no email authentication needed
 - `EMAIL_SECURE` you can change the secure option for nodemailer (default false)
 
 ### Survey JSON
