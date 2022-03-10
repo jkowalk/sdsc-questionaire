@@ -406,6 +406,9 @@ const css_style_all_questions =
         zoom: 1.2
       }
 
+      textarea {
+        min-height: 10rem;
+      }
 
       .sv-container-modern {
         page-break-inside: avoid;

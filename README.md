@@ -36,6 +36,8 @@ For further information visit those github pages or [the official SurveyJS websi
   - "Fred Foo" <foo@example.de>' format for friendly name
 - `SDSC_RECEIVER_EMAIL=receiveremail`
   - address that receives mails on sdsc side
+- `SEND_EMAIL_CC=1`
+  - If enabled only one Email is sent to client with SDSC in CC
 - `SEND_CLIENT_EMAIL=1`
   - If enabled sends Email to client (dataJSON must contain kontakt_email_adresse)
   - If disabled only one Email is sent to the sdsc

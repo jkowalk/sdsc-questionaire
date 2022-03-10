@@ -67,7 +67,6 @@ body {
     border-radius: 20px;
     box-shadow: 2px 2px 10px gray;
     padding: 15px;
-    margin: 1rem;
 }
 
 /* Padding between questions */
@@ -78,8 +77,8 @@ body {
 /* Padding footer */
 .sv-footer {
     padding-bottom: 6rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 /* Custom Rating Question */
@@ -122,4 +121,28 @@ body {
 
 .sv-body {
     font-family: 'Roboto', Helvetica, Arial, Lucida, sans-serif !important;
+}
+
+fieldset[role="radiogroup"]  {
+    white-space: nowrap;
+}
+
+span.sv-rating__min-text {
+    white-space: normal;
+}
+
+span.sv-rating__max-text {
+    white-space: normal;
+}
+
+.sv-row.sv-clearfix {
+    padding: 1rem 0 1rem 0;
+}
+
+.sv-question__content {
+    margin-left: 0.55em;
+    margin-right: 1em;
+}
+.sv-question__description {
+    padding-right: 1em;
 }

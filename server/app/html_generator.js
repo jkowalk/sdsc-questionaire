@@ -139,7 +139,7 @@ function generateBasicReportHTML(dataJson) {
         ${variables.aktualität_erklärung}
     </p>
 </div>
-<footer><div>Generiert am: ${new Date().toLocaleDateString("de-DE")}</div><div>Für: ${escapeHTML(dataJson.unternehmensname)}</div><div>Weitere Informationen unter <a href="https://sdsc-bw.de">sdsc-bw.de</a> oder fragen Sie uns direkt.</div></footer>
+<footer><div>Generiert am: ${new Date().toLocaleDateString('de-DE', { timeZone: 'Europe/Berlin', hour12: false })}</div><div>Für: ${escapeHTML(dataJson.unternehmensname)}</div><div>Weitere Informationen unter <a href="https://sdsc-bw.de">sdsc-bw.de</a> oder fragen Sie uns direkt.</div></footer>
 ${radar_chart_script}
         <script>
     function load() {
@@ -247,7 +247,7 @@ function generateFullReportHTML(dataJson, surveyJson) {
       <div class="tiles">
         <div>
           <h4>Eingesendet</h4>
-          ${new Date().toLocaleDateString("de-DE")} ${new Date().toLocaleTimeString("de-DE")}
+          ${new Date().toLocaleDateString('de-DE', { timeZone: 'Europe/Berlin', hour12: false })} ${new Date().toLocaleTimeString('de-DE', { timeZone: 'Europe/Berlin', hour12: false })}
         </div>
         <div>
           <h4>Bearbeiter</h4>
@@ -267,15 +267,15 @@ function generateFullReportHTML(dataJson, surveyJson) {
         </div>
         <div>
           <h4>Ausreichend Daten gesammelt</h4>
-          ${(dataJson.ausreichend_daten_gesammelt > 2).toString()}
+          ${(dataJson.ausreichend_daten_gesammelt >=3) ? "Ja" : "Nein"}
         </div>
         <div>
           <h4>Für Förderung geeignet</h4>
-          ${escapeHTML(dataJson.förderung_geeignet)}
+          ${dataJson.förderung_geeignet ? "Ja" : "Nein"}
         </div>
         <div>
           <h4>DSGVO und Rechte ok</h4>
-          ${escapeHTML(dataJson.rechtlich_ok)}
+          ${dataJson.rechtlich_ok ? "Ja" : "Nein"}
         </div>
         </div>
         </div>
@@ -300,7 +300,7 @@ function generateFullReportHTML(dataJson, surveyJson) {
  <div style="page-break-before: always"></div>
   <div id="surveyContainer"></div>
 
-  <footer><div>Generiert am: ${new Date().toLocaleDateString("de-DE")} ${new Date().toLocaleTimeString("de-DE")}</div><div>Für Unternehmen: ${escapeHTML(dataJson.unternehmensname)}</div><div>Weitere Informationen: <a href="https://sdsc-bw.de">sdsc-bw.de</a></div></footer>
+  <footer><div>Generiert am: ${new Date().toLocaleDateString('de-DE', { timeZone: 'Europe/Berlin', hour12: false })} ${new Date().toLocaleTimeString('de-DE', { timeZone: 'Europe/Berlin', hour12: false })}</div><div>Für Unternehmen: ${escapeHTML(dataJson.unternehmensname)}</div><div>Weitere Informationen: <a href="https://sdsc-bw.de">sdsc-bw.de</a></div></footer>
 
   <script>
     function load() {
@@ -448,7 +448,7 @@ function generateGenericReportHTML(dataJson, surveyJson) {
   <body onload="load()">
    <div>${genericReportHTMLBeforeSurveyAnswers}</div>
     <div id="surveyContainer"></div>
-  <footer><div>Generiert am: ${new Date().toLocaleDateString("de-DE")} ${new Date().toLocaleTimeString("de-DE")}</div></footer>
+  <footer><div>Generiert am: ${new Date().toLocaleDateString('de-DE', { timeZone: 'Europe/Berlin', hour12: false })} ${new Date().toLocaleTimeString('de-DE', { timeZone: 'Europe/Berlin', hour12: false })}</div></footer>
 
   <script>
     function load() {

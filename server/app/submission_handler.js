@@ -10,6 +10,23 @@ const sdsc_email = process.env.SDSC_RECEIVER_EMAIL || "";
  * @param dataJson
  * @param surveyJson
  */
+function handleSubmission_oneEmail(dataJson, surveyJson) {
+    try {
+        if (process.env.GENERIC_REPORT) {
+            generateGenericReportPDF(dataJson, surveyJson, sendClientAndSDSCEmail, handleSdscError);
+        } else {
+            generateFullReportPDF(dataJson, surveyJson, sendClientAndSDSCEmail, handleClientError);
+        }
+    } catch (err) {
+        handleClientError(err, dataJson);
+    }
+}
+
+/**
+ * Generates Html, then PDF, sends Mail and deletes file again (for Potentialanalyse)
+ * @param dataJson
+ * @param surveyJson
+ */
 function handleSubmission(dataJson, surveyJson) {
     try {
         generateFullReportPDF(dataJson, surveyJson, sendEmailToSDSC, handleSdscError);
@@ -48,6 +65,29 @@ function handleGenericSubmission(dataJson, surveyJson) {
 }
 
 /**
+ * Sends email to dataJson.kontakt_email_adresse und SDSC-BW in CC
+ * @param pdf_path
+ * @param dataJson
+ */
+function sendClientAndSDSCEmail(pdf_path, dataJson) {
+    let content = `\nSehr geehrte/r ${dataJson.kontakt_vorname} ${dataJson.kontakt_nachname},\n \n` + variables.email_text;
+
+    sendEmail(
+        dataJson.kontakt_email_adresse,
+        "Ihr Datenanalyse-Potential Report",
+        content,
+        [{filename: `${dataJson.unternehmensname.replace(/\W/g, '')}_report.pdf`, path: pdf_path},
+            {filename: `${dataJson.unternehmensname.replace(/\W/g, '')}.json`, content: JSON.stringify(dataJson)},],
+        sdsc_email)
+        .finally(() => {
+            handleSuccess(pdf_path)
+        })
+        .catch((reason) => {
+            handleClientError(reason, dataJson);
+        });
+}
+
+/**
  * Sends email to dataJson.kontakt_email_adresse
  * @param pdf_path
  * @param dataJson
@@ -55,7 +95,7 @@ function handleGenericSubmission(dataJson, surveyJson) {
 function sendClientEmail(pdf_path, dataJson) {
     let content = `\nSehr geehrte/r ${dataJson.kontakt_vorname} ${dataJson.kontakt_nachname},\n \n` + variables.email_text;
 
-    sendEmail(dataJson.kontakt_email_adresse, "Ihr Datenanalys-Potential Report", content, [{
+    sendEmail(dataJson.kontakt_email_adresse, "Ihr Datenanalyse-Potential Report", content, [{
         filename: "report.pdf",
         path: pdf_path
     }])
@@ -88,8 +128,8 @@ function sendEmailToSDSC(pdf_path, dataJson) {
         sdsc_email,
         subject,
         content,
-        [{filename: `${dataJson.unternehmensname}_report.pdf`, path: pdf_path},
-            {filename: `${dataJson.unternehmensname}.json`, content: JSON.stringify(dataJson)},]
+        [{filename: `${dataJson.unternehmensname.replace(/\W/g, '')}_report.pdf`, path: pdf_path},
+            {filename: `${dataJson.unternehmensname.replace(/\W/g, '')}.json`, content: JSON.stringify(dataJson)},]
     ).finally(() => {
         handleSuccess(pdf_path)
     })
@@ -111,7 +151,7 @@ function handleClientError(msg, dataJson) {
             Das Json mit den erhaltenen Daten ist angefügt.`;
     sendEmail(
         sdsc_email,
-        "Fehler bei Potentialanalyse Eingang",
+        "Fehler bei Potentialanalyse Umfrage",
         content,
         [{filename: `data.json`, content: JSON.stringify(dataJson)},]
     ).catch((reason) => {
@@ -131,5 +171,6 @@ function handleSuccess(path) {
     fs.unlink(path, console.log);
 }
 
+module.exports.handleSubmission_oneEmail = handleSubmission_oneEmail;
 module.exports.handleSubmission = handleSubmission;
 module.exports.handleGenericSubmission = handleGenericSubmission;

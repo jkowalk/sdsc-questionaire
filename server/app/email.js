@@ -22,10 +22,11 @@ const transporter_no_auth = nodemailer.createTransport({
 
 const transporter = process.env.NO_EMAIL_AUTH ? transporter_no_auth : transporter_auth;
 
-/*
-attachments in form [{filename: attachment_send_name, path: attachment_path}]
- */
-async function sendEmail(recipient, subject, content, attachments) {
+/**
+ * Sends email
+ * attachments in form [{filename: attachment_send_name, path: attachment_path}]
+ **/
+async function sendEmail(recipient, subject, content, attachments, ccEmail) {
     console.log("Sending email ...");
     console.log("To: ", recipient, "Subject: ", subject);
     // Generate test SMTP service account from ethereal.email
@@ -38,6 +39,7 @@ async function sendEmail(recipient, subject, content, attachments) {
     let info = await transporter.sendMail({
         from: process.env.SENDER_EMAIL || '"Fred Foo 👻" <foo@example.de>', // sender address
         to: recipient, // list of receivers
+        cc: ccEmail ? ccEmail : null,
         subject: subject, // Subject line
         text: content, // plain text body
         //html: "<b>Hello world?</b>", // html body

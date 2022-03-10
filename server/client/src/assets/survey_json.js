@@ -8,7 +8,7 @@ export const surveyJson =
      "logoPosition": "none",
      "completedHtml": {
       "default": "Thanks",
-      "de": "<p><br>Vielen Dank für Ihre Angaben und Ihr Interesse.<br><br>In Kürze erhalten Sie Ihren automatisch generierten Report, mit Ihrem Datenanalyse-Potential Ergebnis.<br>Unsere Experten melden sich bei so bald wie möglich bei Ihnen.</p>"
+      "de": "<p> <br> Vielen Dank für Ihre Angaben und Ihr Interesse. <br><br> In Kürze erhalten Sie Ihren automatisch generierten Report, mit Ihrem Datenanalyse-Potential Ergebnis.<br> Unsere Experten melden sich bei so bald wie möglich bei Ihnen. </p>"
      },
      "pages": [
       {
@@ -18,7 +18,7 @@ export const surveyJson =
          "type": "html",
          "name": "info",
          "html": {
-          "de": "<h3>In wenigen Schritten vom Erstgespräch bis zur vollständigen Potentialanalyse für Ihr Unternehmen</h3><p><br>Füllen Sie diesen Fragebogen aus, um mehr aus Ihren Daten herauszuholen. <br><br>Im Laufe des Fragebogens werden wir Ihnen Fragen zum Ziel der Potentialanalyse, sowie der Beschaffenheit Ihrer Daten stellen. Diese Informationen sind wichtig, damit wir Ihnen zielgerichtet und schnell helfen können. Falls Sie die Antwort auf eine Frage nicht wissen, lassen Sie das entsprechende Feld leer.<br><br>Vielen Dank.</p>"
+          "de": "<h3>In wenigen Schritten vom Erstgespräch bis zur vollständigen Potentialanalyse für Ihr Unternehmen</h3>  <p><br> Füllen Sie diesen Fragebogen aus, um mehr aus Ihren Daten herauszuholen.  <br><br> Im Laufe des Fragebogens werden wir Ihnen Fragen zum Ziel der Potentialanalyse, sowie der Beschaffenheit Ihrer Daten stellen. Diese Informationen sind wichtig, damit wir Ihnen zielgerichtet und schnell helfen können. Falls Sie die Antwort auf eine Frage nicht wissen, lassen Sie das entsprechende Feld leer. <br><br> Vielen Dank.</p>"
          }
         }
        ]
@@ -470,7 +470,6 @@ export const surveyJson =
          "title": {
           "de": "Wie viele Beschäftigte hat Ihr Unternehmen?"
          },
-         "enableIf": "{bilanzsumme} <> 'bis_10' and {bilanzsumme} <> 'bis_43'",
          "choices": [
           {
            "value": "bis_9",
@@ -498,7 +497,6 @@ export const surveyJson =
          "title": {
           "de": "Welchen Umsatz macht Ihr Unternehmen pro Jahr?"
          },
-         "enableIf": "{bilanzsumme} <> 'bis_10' and {bilanzsumme} <> 'bis_43'",
          "choices": [
           {
            "value": "bis_2",
@@ -541,7 +539,7 @@ export const surveyJson =
          "type": "rating",
          "name": "unternehmen_wissen_ml",
          "title": {
-          "de": "Ihr Unternehmen besitzt sehr viel Wissen im Bereich Maschine Learning."
+          "de": "Ihr Unternehmen besitzt sehr viel Wissen im Bereich Maschinelles Lernen."
          },
          "description": {
           "de": "Ihr Unternehmen besitzt Mitarbeiter, die tiefes Wissen im Bereich Maschinelles Lernen besitzen und auch in der Lage sind selbst Datenanalysen durchzuführen."
@@ -1034,7 +1032,7 @@ export const surveyJson =
         {
          "type": "multipletext",
          "name": "anzahl_spalten_zeilen",
-         "visibleIf": "{bearbeiter_daten_ml_kenntnis} >= 3 or {bearbeiter_daten_ml_kenntnis} = 0",
+         "visibleIf": "{bearbeiter_daten_ml_kenntnis} > 2 or {bearbeiter_daten_ml_kenntnis} = 0",
          "title": {
           "de": "Geben Sie die grobe Größenordnung der Anzahl an Spalten und Zeilen des Datensatzes an."
          },
@@ -1077,7 +1075,7 @@ export const surveyJson =
         {
          "type": "text",
          "name": "daten_erhebungsfrequenz",
-         "visibleIf": "{bearbeiter_daten_ml_kenntnis} >= 3 or {bearbeiter_daten_ml_kenntnis} = 0",
+         "visibleIf": "{bearbeiter_daten_ml_kenntnis} > 2 or {bearbeiter_daten_ml_kenntnis} = 0",
          "title": {
           "de": "In welcher Frequenz erheben Sie Daten ungefähr?"
          },
@@ -1120,7 +1118,7 @@ export const surveyJson =
         {
          "type": "rating",
          "name": "merkmale_enthalten",
-         "visibleIf": "{bearbeiter_daten_ml_kenntnis} >= 3 or {bearbeiter_daten_ml_kenntnis} = 0",
+         "visibleIf": "{bearbeiter_daten_ml_kenntnis} > 2 or {bearbeiter_daten_ml_kenntnis} = 0",
          "title": {
           "de": "Die Daten zeigen die zu untersuchenden Merkmale sehr gut."
          },
@@ -1145,7 +1143,7 @@ export const surveyJson =
         {
          "type": "rating",
          "name": "question2",
-         "visibleIf": "{bearbeiter_daten_ml_kenntnis} >= 3 or {bearbeiter_daten_ml_kenntnis} = 0",
+         "visibleIf": "{bearbeiter_daten_ml_kenntnis} > 2 or {bearbeiter_daten_ml_kenntnis} = 0",
          "title": {
           "de": "Die Daten sind für das zu betrachtende Problem relevant."
          },
@@ -1170,7 +1168,7 @@ export const surveyJson =
         {
          "type": "rating",
          "name": "zeitreihen_vollständig",
-         "visibleIf": "{bearbeiter_daten_ml_kenntnis} >= 3 or {bearbeiter_daten_ml_kenntnis} = 0",
+         "visibleIf": "{bearbeiter_daten_ml_kenntnis} > 2 or {bearbeiter_daten_ml_kenntnis} = 0",
          "title": {
           "de": "Alle Zeitreihen sind vollständig."
          },
@@ -1195,7 +1193,7 @@ export const surveyJson =
         {
          "type": "rating",
          "name": "zustände_vertreten",
-         "visibleIf": "{bearbeiter_daten_ml_kenntnis} >= 3 or {bearbeiter_daten_ml_kenntnis} = 0",
+         "visibleIf": "{bearbeiter_daten_ml_kenntnis} > 2 or {bearbeiter_daten_ml_kenntnis} = 0",
          "title": {
           "de": "Verschiedene Zustände sind mehrfach in den Daten vertreten."
          },
@@ -1220,7 +1218,7 @@ export const surveyJson =
         {
          "type": "rating",
          "name": "einflussfaktoren_enthalten",
-         "visibleIf": "{bearbeiter_daten_ml_kenntnis} >= 3 or {bearbeiter_daten_ml_kenntnis} = 0",
+         "visibleIf": "{bearbeiter_daten_ml_kenntnis} > 2 or {bearbeiter_daten_ml_kenntnis} = 0",
          "title": {
           "de": "In den Daten sind alle möglichen Einflussfaktoren, die das Ergebnis beeinflussen können, enthalten."
          },
@@ -1246,7 +1244,7 @@ export const surveyJson =
         {
          "type": "rating",
          "name": "stellgrößen_enthalten",
-         "visibleIf": "{bearbeiter_daten_ml_kenntnis} >= 3 or {bearbeiter_daten_ml_kenntnis} = 0",
+         "visibleIf": "{bearbeiter_daten_ml_kenntnis} > 2 or {bearbeiter_daten_ml_kenntnis} = 0",
          "title": {
           "de": "Mögliche Stellgrößen/Variablen, die beeinflusst werden können, wurden in den Daten erfasst."
          },
@@ -1642,7 +1640,7 @@ export const surveyJson =
          "type": "html",
          "name": "feedback_info",
          "html": {
-          "de": "<h3>Ihr Feedback hilft uns weiter</h3><br><p>Wir würden uns freuen, wenn sie uns noch kurz Feedback zu diesem Fragebogen geben könnten.Vielen Dank.</p>"
+          "de": "<h3>Ihr Feedback hilft uns weiter</h3>   <p> Wir würden uns freuen, wenn sie uns noch kurz Feedback zu diesem Fragebogen geben könnten. <br>  Vielen Dank. </p> <h4></h4> "
          }
         },
         {
@@ -1724,14 +1722,14 @@ export const surveyJson =
         }
        ],
        "title": {
-        "de": "Vielen Dank für Ihre Antworten"
+        "de": "Vielen Dank für Ihre Antworten. Um den Fragebogen abzuschicken, klicken Sie bitte auf die Schaltfläche unten."
        }
       }
      ],
      "calculatedValues": [
       {
        "name": "bearbeiter_daten_ml_kenntnis",
-       "expression": "avg({datenkenntnis}, {sicher_datenumgang}, {daten_erklären}, {arbeit_an_ml}, {ml_kenntnis}, {anwendungsfall_kenntnis}, {zusammenhang_daten_ziel})",
+       "expression": "avg({datenkenntnis}, {sicher_datenumgang}, {daten_erklären}, {arbeit_an_ml}, {ml_kenntnis}, {anwendungsfall_kenntnis}, {zusammenhang_daten_ziel})  ",
        "includeIntoResult": true
       },
       {

@@ -7,7 +7,7 @@ const express = require("express");
 const path = require('path');
 const bodyParser = require("body-parser");
 const session = require("express-session");
-const {handleSubmission, handleGenericSubmission} = require("./submission_handler");
+const {handleSubmission, handleGenericSubmission, handleSubmission_oneEmail} = require("./submission_handler");
 const {verifyConnection} = require("./email");
 
 
@@ -29,10 +29,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.post(`/${process.env.REACT_APP_URL || "survey"}/post`, function (req, res) {
     let dataJSON = req.body.surveyResult;
     let surveyJSON = req.body.surveyJson;
-    if (process.env.GENERIC_REPORT) {
-        handleGenericSubmission(dataJSON, surveyJSON);
+    if (process.env.SEND_EMAIL_CC) {
+        handleSubmission_oneEmail(dataJSON, surveyJSON);
     } else {
-        handleSubmission(dataJSON, surveyJSON);
+        if (process.env.GENERIC_REPORT) {
+            handleGenericSubmission(dataJSON, surveyJSON);
+        } else {
+            handleSubmission(dataJSON, surveyJSON);
+        }
     }
     res.sendStatus(200);
 });

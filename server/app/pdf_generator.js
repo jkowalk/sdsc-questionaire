@@ -12,7 +12,7 @@ const puppeteer = require("puppeteer");
 async function generateBasicReportPDF(dataJson, callbackSuccess, callbackError) {
     console.log("Generating Basic Report ...");
 
-    let filename = "./tmp/" + new Date().valueOf() + "_" + dataJson.unternehmensname + "_basic.pdf";
+    let filename = "./tmp/" + new Date().valueOf() + "_" + dataJson.unternehmensname.replace(/\W/g, '') + "_basic.pdf";
     let html = generateBasicReportHTML(dataJson);
 
     generatePDF(html, filename)
@@ -30,7 +30,7 @@ async function generateBasicReportPDF(dataJson, callbackSuccess, callbackError) 
 function generateFullReportPDF(dataJson, surveyJson, callbackSuccess, callbackError) {
     console.log("Generating Full Report ...");
 
-    let filename = "./tmp/" + new Date().valueOf() + "_" + dataJson.unternehmensname + "_full.pdf";
+    let filename = "./tmp/" + new Date().valueOf() + "_" + dataJson.unternehmensname.replace(/\W/g, '') + "_full.pdf";
     let html = generateFullReportHTML(dataJson, surveyJson);
 
     generatePDF(html, filename)
@@ -48,7 +48,7 @@ function generateFullReportPDF(dataJson, surveyJson, callbackSuccess, callbackEr
 function generateGenericReportPDF(dataJson, surveyJson, callbackSuccess, callbackError) {
     console.log("Generating Generic Report ...");
 
-    let filename = "./tmp/" + new Date().valueOf() + "_" + dataJson.unternehmensname + "_generic.pdf";
+    let filename = "./tmp/" + new Date().valueOf() + "_" + dataJson.unternehmensname.replace(/\W/g, '') + "_generic.pdf";
     let html = generateGenericReportHTML(dataJson, surveyJson);
 
     generatePDF(html, filename)
@@ -69,8 +69,8 @@ async function generatePDF(html, path) {
         footerTemplate: "<p></p>",
         displayHeaderFooter: false,
         margin: {
-            top: "0",
-            bottom: "0",
+            top: "30",
+            bottom: "30",
         },
         printBackground: true,
         path: path,
